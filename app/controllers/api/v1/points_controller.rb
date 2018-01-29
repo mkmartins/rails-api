@@ -22,7 +22,7 @@ module Api::V1
 
     # PUT /items/:point_id/points/:id
     def update
-      @point.update(item_params)
+      @point.update(point_params)
       head :no_content
     end
 

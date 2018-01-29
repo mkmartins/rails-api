@@ -4,8 +4,8 @@ module Api::V1
 
     # GET /items
     def index
-      @items = Item.all
-      json_response(@items)
+      @items = Item.order("created_at DESC")
+      render json: @items, include: ['points']
     end
 
     # POST /items
