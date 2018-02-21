@@ -35,7 +35,7 @@ module Api::V1
     private
 
     def point_params
-      params.permit(:title, :done)
+      params.permit(:content, :item_id)
     end
 
     def set_item

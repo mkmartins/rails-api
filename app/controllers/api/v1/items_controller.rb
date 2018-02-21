@@ -4,19 +4,19 @@ module Api::V1
 
     # GET /items
     def index
-      @items = Item.order("created_at DESC")
+      @items = Item.order("created_at ASC")
       render json: @items, include: ['points']
     end
 
     # POST /items
     def create
       @item = Item.create!(item_params)
-      json_response(@item, :created)
+      render json: @item, include: ['points']
     end
 
     # GET /items/:id
     def show
-      json_response(@item)
+      render json: @item, include: ['points']
     end
 
     # PUT /items/:id
@@ -35,7 +35,7 @@ module Api::V1
 
     def item_params
       # whitelist params
-      params.permit(:title, :created_by)
+      params.permit(:title, :item, :created_by, points_attributes:[:point_id, :content])
     end
 
     def set_item
